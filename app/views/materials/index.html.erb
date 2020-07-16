@@ -1,0 +1,60 @@
+<section class="hero is-success">
+  <div class="hero-body"> 
+    <div　class="container">
+      <h1 class="title">素材一覧</h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @materials.each do |material| %>
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image ">
+                <%= link_to material_path(material) do %>
+                  <%= video_tag material.video, controls: true %>
+                <% end %>
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <%= link_to user_path(material.user.id) do %>
+                      <%= attachment_image_tag material.user, :profile_image, fallback: "unknown-user.png" %>
+                    <% end %>
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <div class="title"><%= link_to material.user.username, user_path(material.user.id) %></div>
+                </div>
+                <div class="media-content">
+                  <div class="content"><%= link_to material.title, material_path(material) %></div>
+                </div>
+                <div class="media-content">
+                <% if current_user.already_liked?(material) %>
+                  <%= link_to material_likes_path(material), method: :delete do %>
+                    <i class="fas fa-heart"></i>
+                  <% end %>
+                <% else %>
+                  <%= link_to material_likes_path(material), method: :post do %>
+                    <i class="fas fa-heart"></i>
+                  <% end %>
+                <% end %>
+                <%= material.likes.count %>
+                </div>
+              </div>
+              
+              <div class="content">
+                <time><%= material.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
