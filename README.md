@@ -6,13 +6,13 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
-
+    2.6.3
 * System dependencies
-
+    local
 * Configuration
 
 * Database creation
-
+    sqlite3
 * Database initialization
 
 * How to run the test suite
@@ -20,5 +20,5 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
+    
 * ...
