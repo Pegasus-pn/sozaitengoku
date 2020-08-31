@@ -60,7 +60,7 @@ gem "refile-mini_magick"
 gem "bulma-rails"
 gem 'carrierwave'
 
-group :production do
-  gem 'pg'
-  gem 'fog-aws'
-end
+
+gem 'fog-aws'
+gem 'rmagick'
+
