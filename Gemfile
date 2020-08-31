@@ -62,4 +62,5 @@ gem 'carrierwave'
 
 group :production do
   gem 'pg'
+  gem 'fog-aws'
 end
