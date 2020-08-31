@@ -4,22 +4,21 @@ class VideoUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  if Rails.env.production?
-    storage :file
-  else
-    storage :fog
-  end
+
 
   if Rails.env.production?
+      storage :fog
       CarrierWave.configure do |config|
         config.fog_credentials = {
           :provider              => 'AWS',
           :region                => ENV['ap-northeast-1'],
-          :aws_access_key_id     => ENV['AKIA3UFEEHY7Q7NG5DNT']
+          :aws_access_key_id     => ENV['AKIA3UFEEHY7Q7NG5DNT'],
           :aws_secret_access_key => ENV['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']
         }
         config.fog_directory     =  ENV['sozaitengoku']
       end
+  else
+      storage :file
   end
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
